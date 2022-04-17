@@ -1,7 +1,11 @@
-export type FoodEntryDetails = Record<string, { unit: string, amount: number }>;
-export type FoodEntryCreateOptions = {
-  name: string;
-  details?: FoodEntryDetails;
+export type ImageType = ResImage & {
+  password?: string;
 };
-export type FoodEntry = FoodEntryCreateOptions & { id: string, createdAt: Date };
-export type FoodEntryUpdateOptions = Partial<FoodEntryCreateOptions>;
+
+export type ResImage = {
+  label: string;
+  url: string;
+  reviewUrl: string;
+  isProtected: boolean;
+  _id: string;
+};

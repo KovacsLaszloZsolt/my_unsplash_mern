@@ -4,23 +4,7 @@ import { randomUUID } from 'crypto';
 import bcrypt from 'bcryptjs';
 import sharp from 'sharp';
 import path from 'path';
-
-type ImageType = {
-  label: string;
-  url: string;
-  reviewUrl: string;
-  isProtected: boolean;
-  password?: string;
-  _id: string;
-};
-
-type ResImage = {
-  label: string;
-  url: string;
-  reviewUrl: string;
-  isProtected: boolean;
-  id: string;
-};
+import { ImageType, ResImage } from '../interfaces';
 
 export const getAllImages = async (
   req: Request,
@@ -106,6 +90,6 @@ const setResImage = (image: ImageType): ResImage => {
     url: image.url,
     reviewUrl: image.reviewUrl,
     isProtected: image.isProtected,
-    id: image._id,
+    _id: image._id,
   };
 };

@@ -3,16 +3,16 @@ import { Image } from '../models/imageModel';
 import { randomUUID } from 'crypto';
 import bcrypt from 'bcryptjs';
 import sharp from 'sharp';
-import path from 'path';
 import { ImageType, ResImage } from '../interfaces';
 
 export const getAllImages = async (
   req: Request,
   res: Response,
 ): Promise<Response<unknown, Record<string, unknown>>> => {
-  const images: ImageType[] = await Image.find();
+  const skip = parseInt(req.query?.skip as string);
+  const images: ImageType[] = (await Image.find().sort({ createdAt: -1 }).skip(skip).limit(5)) as ImageType[];
 
-  return res.status(200).json({ images: images.map((image) => setResImage(image)) });
+  return res.status(200).json(images.map((image) => setResImage(image)));
 };
 
 export const getSingleImage = async (
@@ -33,10 +33,10 @@ export const createImage = async (req: Request, res: Response): Promise<Response
   const { label, password } = req.body as { label: string; password: string | undefined };
 
   if (!file || !label) {
-    return res.status(401).json({ error: 'missing required property' });
+    return res.status(400).json({ error: 'missing required property' });
   }
 
-  await sharp(file.path).resize(200).toFile(`${file.destination}/review_${file.filename}`);
+  await sharp(file.path).resize(350).toFile(`${file.destination}/review_${file.filename}`);
 
   const host = req.header('host') as string;
   const filePath = file?.path;
@@ -47,12 +47,14 @@ export const createImage = async (req: Request, res: Response): Promise<Response
     hash = await bcrypt.hash(password, salt);
   }
 
+  const reviewUrl = new URL(`http://${host}/${process.env.UploadFilesFolder as string}/review_${file.filename}`);
+
   const image = (await Image.create({
     _id: randomUUID(),
     label: label,
     password: hash,
     url: `http://${host}/${filePath}`,
-    reviewUrl: path.join('http://', host, file.destination, `review_${file.filename}`),
+    reviewUrl: reviewUrl,
     isProtected: hash ? true : false,
   })) as ImageType;
 
@@ -82,6 +84,16 @@ export const deleteImage = async (req: Request, res: Response): Promise<Response
 
   await Image.findByIdAndDelete(id);
   return res.status(200).json();
+};
+
+export const getSearchedImages = async (
+  req: Request,
+  res: Response,
+): Promise<Response<unknown, Record<string, unknown>>> => {
+  const search = req.query.label;
+  const searchedImages: ImageType[] | null = await Image.find({ label: { $regex: search, $options: 'i' } });
+
+  return res.status(200).json(searchedImages.map((image) => setResImage(image)));
 };
 
 const setResImage = (image: ImageType): ResImage => {

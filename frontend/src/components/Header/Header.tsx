@@ -1,9 +1,11 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
+
+import { AppContextType } from '../../interfaces';
+import './Header.scss';
+import AppContext from '../../context/AppContext';
 import { ReactComponent as Logo } from '../../assets/my_unsplash_logo.svg';
 import SearchBar from '../SearchBar/SearchBar';
 import AddPhotoModal from '../AddPhotoModal/AddPhotoModal';
-import './Header.scss';
-import AppContext, { AppContextType } from '../../context/AppContext';
 
 const Header = (): JSX.Element => {
   const { setIsModalOpen } = useContext(AppContext) as AppContextType;

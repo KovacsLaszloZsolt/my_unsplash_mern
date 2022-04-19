@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import ModalBtns from '../ModalBtns/ModalBtns';
+
+import { AppContextType } from '../../interfaces';
 import './AddPhotoModal.scss';
-import AppContext, { AppContextType } from '../../context/AppContext';
+import AppContext from '../../context/AppContext';
+import ModalBtns from '../ModalBtns/ModalBtns';
 
 type InputValues = {
   label: string;

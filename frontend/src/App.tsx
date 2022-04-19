@@ -1,8 +1,10 @@
 import { useContext } from 'react';
+
+import { AppContextType } from './interfaces';
 import './App.scss';
+import AppContext from './context/AppContext';
 import Header from './components/Header/Header';
 import ImageGallery from './components/ImageGallery/ImageGallery';
-import AppContext, { AppContextType } from './context/AppContext';
 
 function App(): JSX.Element {
   const { isModalOpen } = useContext(AppContext) as AppContextType;

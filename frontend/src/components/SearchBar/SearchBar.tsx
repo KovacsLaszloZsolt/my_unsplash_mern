@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
-import './SearchBar.scss';
-import { AiOutlineSearch } from 'react-icons/ai';
-import AppContext, { AppContextType } from '../../context/AppContext';
 import axios, { AxiosResponse } from 'axios';
-import { Image } from '../../interfaces';
+import { AiOutlineSearch } from 'react-icons/ai';
+
+import { AppContextType, Image } from '../../interfaces';
+import './SearchBar.scss';
+import AppContext from '../../context/AppContext';
 
 const SearchBar = (): JSX.Element => {
   const { setData } = useContext(AppContext) as AppContextType;

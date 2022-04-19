@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
-import AppContext, { AppContextType } from '../../context/AppContext';
+
+import { AppContextType } from '../../interfaces';
 import './ModalBtns.scss';
+import AppContext from '../../context/AppContext';
 
 const ModalBtns = ({
   setIsCurrentModalOpen,

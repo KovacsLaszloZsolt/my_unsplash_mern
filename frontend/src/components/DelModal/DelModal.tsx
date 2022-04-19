@@ -1,6 +1,8 @@
-import axios, { AxiosError } from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
-import AppContext, { AppContextType } from '../../context/AppContext';
+import axios, { AxiosError } from 'axios';
+
+import { AppContextType } from '../../interfaces';
+import AppContext from '../../context/AppContext';
 import ModalBtns from '../ModalBtns/ModalBtns';
 
 const DelModal = ({

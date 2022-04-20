@@ -10,5 +10,10 @@
   "scripts": {
     "start": "ts-node backend/src/index.ts",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install --prefix frontend && yarn install --prefix backend"
+  },
+  "dependencies": {
+    "@types/node": "16.11.26",
+    "ts-node": "10.7.0",
+    "typescript": "4.4"
   }
 }

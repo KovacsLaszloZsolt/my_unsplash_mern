@@ -19,15 +19,11 @@ app.use(errorHandler);
 // serve static folder if production
 if (process.env.NODE_ENV === 'production') {
   // set static folder
-  app.use('/', express.static('../frontend/build'));
+  app.use('/', express.static(path.resolve(__dirname, '../../frontend/build')));
   app.get('*', (req: Request, res: Response) => {
     res.sendFile(path.resolve(__dirname, '../../', 'frontend', 'build', 'index.html'));
   });
 }
-app.use(express.static('../frontend/build'));
-app.get('*', (req: Request, res: Response) => {
-  res.sendFile(path.resolve(__dirname, '../../', 'frontend', 'build', 'index.html'));
-});
 
 app.use('*', (_req, res) => {
   return res.status(404).send({ error: 'not found' });

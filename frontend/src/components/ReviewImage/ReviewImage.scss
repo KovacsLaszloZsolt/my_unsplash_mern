@@ -1,0 +1,39 @@
+@import '../../scss/colors';
+@import '../../scss/fontFamilies';
+
+.imageWrapper {
+  margin-bottom: 2rem;
+  position: relative;
+  width: fit-content;
+
+  & .imageReview {
+    border-radius: 16px;
+  }
+}
+
+.imageLabel {
+  position: absolute;
+  font-family: $secondaryFont;
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.375rem;
+  color: $white;
+  bottom: 2rem;
+  left: 1.5rem;
+}
+
+.delBtn {
+  color: $red;
+  background-color: rgba($color: #fff, $alpha: .5);
+  border: 1px solid $red;
+  border-radius: 38px;
+  padding: .375rem 1rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    opacity: .8;
+  }
+}

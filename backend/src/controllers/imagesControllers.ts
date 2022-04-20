@@ -3,6 +3,7 @@ import { Image } from '../models/imageModel';
 import { randomUUID } from 'crypto';
 import bcrypt from 'bcryptjs';
 import sharp from 'sharp';
+
 import { ImageType, ResImage } from '../interfaces';
 
 export const getAllImages = async (

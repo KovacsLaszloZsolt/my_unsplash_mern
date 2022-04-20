@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "ts-node backend/src/index.ts",
-    "build-frontend": "cd client && yarn build",
+    "build-frontend": "cd frontend && yarn build",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install --prefix frontend && yarn build-frontend && yarn install --prefix backend"
   },
   "dependencies": {

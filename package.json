@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "ts-node backend/src/index.ts",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install --prefix frontend && yarn install --prefix backend"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install --prefix frontend && yarn build --prefix frontend && yarn install --prefix backend"
   },
   "dependencies": {
     "bcryptjs": "2.4.3",

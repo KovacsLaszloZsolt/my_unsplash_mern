@@ -8,7 +8,8 @@
   "private": false,
   "scripts": {
     "start": "ts-node src/index.ts",
-    "start:dev": "ts-node-dev src/index.ts"
+    "start:dev": "ts-node-dev src/index.ts",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install --prefix ../frontend && yarn build --prefix ../frontend"
   },
   "dependencies": {
     "bcryptjs": "2.4.3",

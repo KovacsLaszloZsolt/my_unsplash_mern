@@ -1,1 +1,1 @@
-web: ts-node backend/src/index.ts
+web: cd backend && ts-node src/index.ts

@@ -8,6 +8,6 @@
     "node": "16.2.0"
   },
   "scripts": {
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install --prefix ./frontend && yarn run build --prefix ./frontend && yarn install --prefix ./backend"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install --prefix ./frontend && yarn install --prefix ./backend"
   }
 }

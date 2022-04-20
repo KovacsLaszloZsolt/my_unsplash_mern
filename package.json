@@ -11,6 +11,7 @@
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install --prefix ./frontend && yarn install --prefix ./backend"
   },
   "dependencies": {
-    "ts-node": "10.7.0"
+    "ts-node": "10.7.0",
+    "typescript": "4.4"
   }
 }

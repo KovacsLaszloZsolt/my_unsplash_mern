@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 
-import { AppContextType } from '../../interfaces';
 import './ModalBtns.scss';
 import AppContext from '../../context/AppContext';
 
@@ -11,7 +10,7 @@ const ModalBtns = ({
   setIsCurrentModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isBtnDisabled: boolean;
 }): JSX.Element => {
-  const { setIsModalOpen } = useContext(AppContext) as AppContextType;
+  const { setIsModalOpen } = useContext(AppContext);
   const handleModalCancelClick = (): void => {
     setIsModalOpen(false);
     setIsCurrentModalOpen(false);

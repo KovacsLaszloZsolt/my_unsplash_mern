@@ -4,7 +4,7 @@ import axios, { AxiosResponse } from 'axios';
 import { AppContextType, Image, LayoutProps } from '../interfaces';
 axios.defaults.baseURL = 'http://localhost:3001';
 
-const AppContext = createContext<AppContextType | null>(null);
+const AppContext = createContext<AppContextType>({} as AppContextType);
 
 export const AppContextProvider = ({ children }: LayoutProps): JSX.Element => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);

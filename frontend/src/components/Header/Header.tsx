@@ -1,6 +1,5 @@
 import { useContext, useState } from 'react';
 
-import { AppContextType } from '../../interfaces';
 import './Header.scss';
 import AppContext from '../../context/AppContext';
 import { ReactComponent as Logo } from '../../assets/my_unsplash_logo.svg';
@@ -8,7 +7,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import AddPhotoModal from '../AddPhotoModal/AddPhotoModal';
 
 const Header = (): JSX.Element => {
-  const { setIsModalOpen } = useContext(AppContext) as AppContextType;
+  const { setIsModalOpen } = useContext(AppContext);
   const [isAddModalOpen, setIsAddModalOpen] = useState<boolean>(false);
 
   const handleAddBtnClick = (): void => {

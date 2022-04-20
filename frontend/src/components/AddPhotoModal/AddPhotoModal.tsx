@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import { AppContextType } from '../../interfaces';
 import './AddPhotoModal.scss';
 import AppContext from '../../context/AppContext';
 import ModalBtns from '../ModalBtns/ModalBtns';
@@ -16,7 +15,7 @@ const AddPhotoModal = ({
 }: {
   setIsAddModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }): JSX.Element => {
-  const { setIsModalOpen, uploadImage } = useContext(AppContext) as AppContextType;
+  const { setIsModalOpen, uploadImage } = useContext(AppContext);
   const [inputValues, setInputValues] = useState<InputValues>({
     label: '',
     image: null,

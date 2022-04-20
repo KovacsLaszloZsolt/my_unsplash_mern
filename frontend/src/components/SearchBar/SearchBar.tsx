@@ -2,12 +2,12 @@ import React, { useContext, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import { AiOutlineSearch } from 'react-icons/ai';
 
-import { AppContextType, Image } from '../../interfaces';
+import { Image } from '../../interfaces';
 import './SearchBar.scss';
 import AppContext from '../../context/AppContext';
 
 const SearchBar = (): JSX.Element => {
-  const { setData } = useContext(AppContext) as AppContextType;
+  const { setData } = useContext(AppContext);
   const [search, setSearch] = useState('');
 
   const handleInputChange = async (e: React.ChangeEvent): Promise<void> => {

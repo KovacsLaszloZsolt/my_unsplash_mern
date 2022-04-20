@@ -1,13 +1,12 @@
 import { useContext, useEffect } from 'react';
 import Masonry from 'react-masonry-css';
 
-import { AppContextType } from '../../interfaces';
 import './ImageGallery.scss';
 import AppContext from '../../context/AppContext';
 import ReviewImage from '../ReviewImage/ReviewImage';
 
 const ImageGallery = (): JSX.Element => {
-  const { data, getAllImages, isFetching, setIsFetching } = useContext(AppContext) as AppContextType;
+  const { data, getAllImages, isFetching, setIsFetching } = useContext(AppContext);
   useEffect(() => {
     void getAllImages(0);
   }, []);

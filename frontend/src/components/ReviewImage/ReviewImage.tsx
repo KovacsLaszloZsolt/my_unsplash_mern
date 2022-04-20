@@ -1,12 +1,12 @@
 import { useContext, useState } from 'react';
 
-import { AppContextType, Image } from '../../interfaces';
+import { Image } from '../../interfaces';
 import './ReviewImage.scss';
 import AppContext from '../../context/AppContext';
 import DelModal from '../DelModal/DelModal';
 
 const ReviewImage = ({ image }: { image: Image }): JSX.Element => {
-  const { setIsModalOpen } = useContext(AppContext) as AppContextType;
+  const { setIsModalOpen } = useContext(AppContext);
   const [isHowered, setIsHowered] = useState<boolean>(false);
   const [isDelModalOpen, setIsDelModalOpen] = useState(false);
 

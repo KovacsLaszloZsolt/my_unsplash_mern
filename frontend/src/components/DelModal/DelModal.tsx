@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios, { AxiosError } from 'axios';
 
-import { AppContextType } from '../../interfaces';
 import AppContext from '../../context/AppContext';
 import ModalBtns from '../ModalBtns/ModalBtns';
 
@@ -14,7 +13,7 @@ const DelModal = ({
   isProtected: boolean;
   id: string;
 }): JSX.Element => {
-  const { setIsModalOpen, getAllImages } = useContext(AppContext) as AppContextType;
+  const { setIsModalOpen, getAllImages } = useContext(AppContext);
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [isBtnDisabled, setIsBtnDisabled] = useState(isProtected);

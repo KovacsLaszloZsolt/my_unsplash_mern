@@ -8,7 +8,7 @@
     "node": "16.2.0"
   },
   "scripts": {
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install --prefix ./frontend && yarn install --prefix ./backend"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install --prefix frontend && yarn install --prefix backend"
   },
   "dependencies": {
     "ts-node": "10.7.0",

@@ -1,15 +1,14 @@
 {
-  "name": "backend-image_uploader",
+  "name": "my_unsplash_mern",
   "version": "1.0.0",
-  "main": "index.js",
-  "repository": "git@github.com:KovacsLaszloZsolt/authentication_app_mern.git",
-  "author": "Kovacs Laszlo <laszlo.zs.kovacs@gmail.com>",
+  "repository": "git@github.com:KovacsLaszloZsolt/my_unsplash_mern.git",
+  "author": "Kovacs Laszlo Zsolt <laszlo.zs.kovacs@gmail.com>",
   "license": "MIT",
+  "main": "src/index.ts",
   "private": false,
   "scripts": {
     "start": "ts-node src/index.ts",
-    "start:dev": "ts-node-dev src/index.ts",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install --prefix ../frontend && yarn build --prefix ../frontend"
+    "start:dev": "ts-node-dev src/index.ts"
   },
   "dependencies": {
     "bcryptjs": "2.4.3",

@@ -1,0 +1,10 @@
+{
+  "name": "my_unsplash_mern",
+  "version": "1.0.0",
+  "repository": "git@github.com:KovacsLaszloZsolt/my_unsplash_mern.git",
+  "author": "Kovacs Laszlo Zsolt <laszlo.zs.kovacs@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install --prefix ./frontend && yarn build --prefix ./frontend && yarn install --prefix ./backend"
+  }
+}

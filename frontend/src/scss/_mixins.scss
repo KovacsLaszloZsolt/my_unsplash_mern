@@ -1,0 +1,7 @@
+$tablet-width: 600px;
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) {
+    @content;
+  }
+}

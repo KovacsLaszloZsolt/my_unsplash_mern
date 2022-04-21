@@ -1,18 +1,6 @@
 @import '../../scss/colors';
 @import '../../scss/fontFamilies';
 
-.modal {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  padding-top: 15vh;
-  z-index: 9999999;
-}
-
 .modalForm {
   width: 90vw;
   height: fit-content;
@@ -20,7 +8,6 @@
   background-color: white;
   padding: 2rem 1.5rem;
   border-radius: 12px;
-  border: 1px solid $labelColor;
 }
 
 .modalTitle {

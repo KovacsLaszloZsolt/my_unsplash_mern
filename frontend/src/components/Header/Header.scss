@@ -1,14 +1,33 @@
 @import '../../scss/_colors.scss';
 @import '../../scss/fontFamilies';
+@import '../../scss/mixins';
 
 .header {
-  margin: 2rem 7.5vw 4.75rem 7.5vw;
+  margin: 0 auto;
+  margin: 2rem 2.5vw 0.75rem 2.5vw;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  align-items: center;
+  // justify-content: space-between;
   flex-wrap: wrap;
+  @include tablet {
+    margin: 2rem 4.5vw 4.75rem 4.5vw;
+  }
+
+  .btn {
+    order: 2;
+    @include tablet {
+      order: 3;
+    }
+  }
 }
 
+.logo {
+  margin-right: auto;
+  @include tablet {
+    margin: 0;
+  }
+}
 .wrapper {
   display: flex;
   flex-direction: row;

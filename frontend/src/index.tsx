@@ -10,6 +10,5 @@ root.render(
     <AppContextProvider>
       <App />
     </AppContextProvider>
-    ,
   </React.StrictMode>,
 );

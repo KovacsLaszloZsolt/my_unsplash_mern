@@ -33,6 +33,9 @@ const AddPhotoModal = ({
     const target = e.target as HTMLInputElement;
 
     const image: null | File = target.files ? target.files[0] : null;
+    if (inputValues.image && !image) {
+      return;
+    }
     setInputValues({ ...inputValues, image: image });
   };
 

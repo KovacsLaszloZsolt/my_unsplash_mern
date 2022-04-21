@@ -5,7 +5,15 @@ import './ReviewImage.scss';
 import AppContext from '../../context/AppContext';
 import DelModal from '../DelModal/DelModal';
 
-const ReviewImage = ({ image }: { image: Image }): JSX.Element => {
+const ReviewImage = ({
+  image,
+  setViewImageIndex,
+  index,
+}: {
+  image: Image;
+  setViewImageIndex: React.Dispatch<React.SetStateAction<number | null>>;
+  index: number;
+}): JSX.Element => {
   const { setIsModalOpen } = useContext(AppContext);
   const [isHowered, setIsHowered] = useState<boolean>(false);
   const [isDelModalOpen, setIsDelModalOpen] = useState(false);
@@ -18,6 +26,11 @@ const ReviewImage = ({ image }: { image: Image }): JSX.Element => {
     setIsHowered(false);
   };
 
+  const handleViewImageClick = (): void => {
+    setViewImageIndex(index);
+    setIsModalOpen(true);
+  };
+
   const handleDelBtnClick = (): void => {
     setIsDelModalOpen(true);
     setIsModalOpen(true);
@@ -25,15 +38,18 @@ const ReviewImage = ({ image }: { image: Image }): JSX.Element => {
 
   return (
     <>
-      <div key={image._id} className="imageWrapper" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-        <img className="imageReview" src={image.reviewUrl} alt="review" />
+      <div className="imageWrapper" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        <img className={`${isHowered ? 'hover' : ''} imageReview`} src={image.reviewUrl} alt="review" />
         {isHowered && (
-          <>
+          <div className="layerCtn">
             <span className="imageLabel">{image.label}</span>
+            <button className="viewImageBtn" onClick={handleViewImageClick}>
+              View
+            </button>
             <button className="delBtn" onClick={handleDelBtnClick}>
               delete
             </button>
-          </>
+          </div>
         )}
       </div>
       {isDelModalOpen && (

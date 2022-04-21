@@ -19,4 +19,6 @@ export type AppContextType = {
   uploadImage: (formData: FormData) => Promise<void>;
   isFetching: boolean;
   setIsFetching: React.Dispatch<React.SetStateAction<boolean>>;
+  searchValue: string;
+  setSearchValue: React.Dispatch<React.SetStateAction<string>>;
 };

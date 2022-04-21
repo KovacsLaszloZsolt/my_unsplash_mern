@@ -1,15 +1,15 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Masonry from 'react-masonry-css';
 
 import './ImageGallery.scss';
 import AppContext from '../../context/AppContext';
 import ReviewImage from '../ReviewImage/ReviewImage';
+import ImageViewerModal from '../ImageViewerModal/ImageViewerModal';
 
 const ImageGallery = (): JSX.Element => {
   const { data, getAllImages, isFetching, setIsFetching } = useContext(AppContext);
-  useEffect(() => {
-    void getAllImages(0);
-  }, []);
+  const [viewImageIndex, setViewImageIndex] = useState<number | null>(null);
+  // const [isImageViewerModalOpen, setIsImageViewerModalOpen] = useState(false);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -30,7 +30,9 @@ const ImageGallery = (): JSX.Element => {
   }
 
   const breakpointColumnsObj = {
-    default: 3,
+    default: 5,
+    1910: 4,
+    1582: 3,
     1146: 2,
     764: 1,
     382: 0,
@@ -39,11 +41,14 @@ const ImageGallery = (): JSX.Element => {
   return (
     <main>
       {data && (
-        <Masonry breakpointCols={breakpointColumnsObj} className="imageGallery" columnClassName="column">
-          {data.map((image) => (
-            <ReviewImage key={image._id} image={image} />
-          ))}
-        </Masonry>
+        <>
+          <Masonry breakpointCols={breakpointColumnsObj} className="imageGallery" columnClassName="column">
+            {data.map((image, index) => (
+              <ReviewImage key={image._id} image={image} setViewImageIndex={setViewImageIndex} index={index} />
+            ))}
+          </Masonry>
+          {setViewImageIndex !== null && <ImageViewerModal index={viewImageIndex} setIndex={setViewImageIndex} />}
+        </>
       )}
     </main>
   );

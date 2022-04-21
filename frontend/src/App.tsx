@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 // import { AppContextType } from './interfaces';
 import './App.scss';
@@ -8,8 +8,14 @@ import ImageGallery from './components/ImageGallery/ImageGallery';
 
 function App(): JSX.Element {
   const { isModalOpen } = useContext(AppContext);
+  const body = document.querySelector('body');
+
+  useEffect(() => {
+    body?.classList.toggle('modalOpen');
+  }, [isModalOpen]);
+
   return (
-    <div className={isModalOpen ? 'App modalOpen' : 'App'}>
+    <div className="App">
       <Header />
       <ImageGallery />
     </div>

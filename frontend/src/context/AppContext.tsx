@@ -2,7 +2,8 @@ import { createContext, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
 
 import { AppContextType, Image, LayoutProps } from '../interfaces';
-axios.defaults.baseURL = 'https://morning-garden-14259.herokuapp.com/';
+axios.defaults.baseURL = 'http://localhost:3001';
+// axios.defaults.baseURL = 'https://morning-garden-14259.herokuapp.com/';
 
 const AppContext = createContext<AppContextType>({} as AppContextType);
 
@@ -10,12 +11,13 @@ export const AppContextProvider = ({ children }: LayoutProps): JSX.Element => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [data, setData] = useState<Image[]>([]);
   const [isFetching, setIsFetching] = useState<boolean>(false);
+  const [searchValue, setSearchValue] = useState<string>('');
 
   const getAllImages = async (skip: number): Promise<void> => {
     try {
       const res: AxiosResponse = await axios({
         method: 'get',
-        url: `/images?skip=${skip}`,
+        url: `/images?label=${searchValue}&skip=${skip}`,
       });
       const resData = res.data as Image[];
       console.log(resData);
@@ -48,7 +50,18 @@ export const AppContextProvider = ({ children }: LayoutProps): JSX.Element => {
 
   return (
     <AppContext.Provider
-      value={{ isModalOpen, setIsModalOpen, data, setData, getAllImages, uploadImage, isFetching, setIsFetching }}
+      value={{
+        isModalOpen,
+        setIsModalOpen,
+        data,
+        setData,
+        getAllImages,
+        uploadImage,
+        isFetching,
+        setIsFetching,
+        searchValue,
+        setSearchValue,
+      }}
     >
       {children}
     </AppContext.Provider>

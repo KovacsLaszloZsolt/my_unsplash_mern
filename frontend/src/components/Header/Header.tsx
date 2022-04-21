@@ -17,11 +17,11 @@ const Header = (): JSX.Element => {
 
   return (
     <header className="header">
-      <div className="wrapper">
-        <Logo />
-        <SearchBar />
-      </div>
-      <button className="btn primary" type="button" onClick={handleAddBtnClick}>
+      {/* <div className="wrapper"> */}
+      <Logo className="logo" />
+      <SearchBar />
+      {/* </div> */}
+      <button className="btn primary addBtn" type="button" onClick={handleAddBtnClick}>
         Add a photo
       </button>
       {isAddModalOpen && <AddPhotoModal setIsAddModalOpen={setIsAddModalOpen} />}

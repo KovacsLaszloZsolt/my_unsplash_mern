@@ -3,7 +3,7 @@ import multer, { MulterError, StorageEngine } from 'multer';
 import path from 'path';
 
 const fileStorageEngine: StorageEngine = multer.diskStorage({
-  destination: `./${process.env.UploadFilesFolder as string}`,
+  destination: './tmp/',
   filename: (_req, file, cb) => {
     cb(null, `${Date.now()}-${file.originalname}`);
   },

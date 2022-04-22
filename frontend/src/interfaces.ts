@@ -1,9 +1,16 @@
-export type Image = {
+export type ImageType = {
   label: string;
   url: string;
   reviewUrl: string;
   isProtected: boolean;
   _id: string;
+};
+
+export type InputFileValues = {
+  label: string;
+  password: string;
+  name: string;
+  base64encodedImage: string | ArrayBuffer | null;
 };
 
 export interface LayoutProps {
@@ -13,8 +20,8 @@ export interface LayoutProps {
 export type AppContextType = {
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  data: Image[];
-  setData: React.Dispatch<React.SetStateAction<Image[]>>;
+  data: ImageType[];
+  setData: React.Dispatch<React.SetStateAction<ImageType[]>>;
   getAllImages: (skip: number) => Promise<void>;
   uploadImage: (formData: FormData) => Promise<void>;
   isFetching: boolean;

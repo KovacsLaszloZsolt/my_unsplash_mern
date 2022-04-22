@@ -7,7 +7,6 @@ const imageSchema = new Schema(
     _id: { type: String, required: true },
     label: { type: String, required: true },
     url: { type: String, required: true },
-    reviewUrl: { type: String, required: true },
     password: { type: String, required: false },
     isProtected: { type: Boolean, required: true },
   },

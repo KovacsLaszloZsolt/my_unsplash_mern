@@ -12,6 +12,7 @@
     "install-frontend": "cd frontend && yarn install",
     "build-frontend": "cd frontend && yarn build",
     "install-backend": "cd backend && yarn install",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install-frontend && yarn build-frontend && yarn install-backend"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install-frontend && yarn build-frontend && yarn install-backend",
+    "dev": "cd frontend && yarn start && cd backend && yarn start:dev"
   }
 }

@@ -7,7 +7,7 @@ const errorHandler = (err: unknown, _req: Request, res: Response, _next: NextFun
       res.status(400).json({ error: 'not suported type' });
     }
   }
-
+  console.log(err);
   res.status(500).send({ error: 'unknown error' });
 };
 

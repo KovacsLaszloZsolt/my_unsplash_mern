@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
+import { Image, Transformation } from 'cloudinary-react';
 
-import { Image } from '../../interfaces';
+import { ImageType } from '../../interfaces';
 import './ReviewImage.scss';
 import AppContext from '../../context/AppContext';
 import DelModal from '../DelModal/DelModal';
@@ -10,7 +11,7 @@ const ReviewImage = ({
   setViewImageIndex,
   index,
 }: {
-  image: Image;
+  image: ImageType;
   setViewImageIndex: React.Dispatch<React.SetStateAction<number | null>>;
   index: number;
 }): JSX.Element => {
@@ -39,7 +40,14 @@ const ReviewImage = ({
   return (
     <>
       <div className="imageWrapper" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-        <img className={`${isHowered ? 'hover' : ''} imageReview`} src={image.reviewUrl} alt="review" />
+        <Image
+          cloudName="dxnsrmr2w"
+          publicId={image.url}
+          className={`${isHowered ? 'hover' : ''} imageReview`}
+          alt="review"
+        >
+          <Transformation width="350" crop="scale" />
+        </Image>
         {isHowered && (
           <div className="layerCtn">
             <span className="imageLabel">{image.label}</span>

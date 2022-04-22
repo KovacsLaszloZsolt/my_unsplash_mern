@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Image } from 'cloudinary-react';
 
 import './ImageViewerModal.scss';
 import AppContext from '../../context/AppContext';
-import { Image } from '../../interfaces';
+import { ImageType } from '../../interfaces';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { ImArrowLeft, ImArrowRight } from 'react-icons/im';
 
@@ -14,7 +15,7 @@ const ImageViewerModal = ({
   setIndex: React.Dispatch<React.SetStateAction<number | null>>;
 }): JSX.Element => {
   const { data, getAllImages, setIsModalOpen } = useContext(AppContext);
-  const [image, setImage] = useState<Image | null>(index !== null ? data[index] : null);
+  const [image, setImage] = useState<ImageType | null>(index !== null ? data[index] : null);
 
   const handleArrowClick = (direction: string): void => {
     if (index !== null) {
@@ -54,7 +55,8 @@ const ImageViewerModal = ({
                 <ImArrowLeft />
               </div>
             )}
-            <img className="imageFull" src={image.url} alt={image.label} />
+            <Image className="imageFull" cloudName="dxnsrmr2w" publicId={image.url} alt={image.label} />
+
             {!(index !== null && index + 1 === data.length) && (
               <div className="arrowCtn arrowRight" onClick={() => handleArrowClick('right')}>
                 <ImArrowRight />

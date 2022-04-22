@@ -32,7 +32,8 @@ export const AppContextProvider = ({ children }: LayoutProps): JSX.Element => {
     }
   };
 
-  const uploadImage = async (formData: FormData): Promise<void> => {
+  const uploadImages = async (formData: FormData): Promise<void> => {
+    console.log(formData);
     try {
       const res = await axios({
         method: 'post',
@@ -41,7 +42,7 @@ export const AppContextProvider = ({ children }: LayoutProps): JSX.Element => {
       });
       console.log(res);
       if (res.status === 201) {
-        void getAllImages(0);
+        await getAllImages(0);
       }
     } catch (err) {
       console.log(err);
@@ -56,7 +57,7 @@ export const AppContextProvider = ({ children }: LayoutProps): JSX.Element => {
         data,
         setData,
         getAllImages,
-        uploadImage,
+        uploadImages,
         isFetching,
         setIsFetching,
         searchValue,

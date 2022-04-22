@@ -38,40 +38,42 @@ export const getSingleImage = async (
   return res.status(200).json({ image: setResImage(image) });
 };
 
-export const createImage = async (req: Request, res: Response): Promise<Response<unknown, Record<string, unknown>>> => {
-  // console.log(req.body);
-  const file = req.file;
-  console.log(file);
+export const createImages = async (
+  req: Request,
+  res: Response,
+): Promise<Response<unknown, Record<string, unknown>>> => {
+  const files = req.files as Express.Multer.File[];
+  console.log(files);
   const { label, password } = req.body as { label: string; password: string | undefined };
 
-  if (!file || !label) {
+  if (!files || !label) {
     return res.status(400).json({ error: 'missing required property' });
   }
 
-  const uploadImage = await cloudinary.uploader.upload(file.path, { upload_preset: 'image_upload' });
-  console.log(uploadImage);
-
-  // const host = req.header('host') as string;
-  // const filePath = file?.path;
-
-  let hash;
+  let hash: string;
   if (password) {
     const salt = await bcrypt.genSalt(10);
     hash = await bcrypt.hash(password, salt);
   }
 
-  // const reviewUrl = new URL(`http://${host}/${process.env.UploadFilesFolder as string}/review_${file.filename}`);
+  const uploadImage = async (files: Express.Multer.File[]): Promise<void> => {
+    const promises = files.map(async (file) => {
+      const uploadImage = await cloudinary.uploader.upload(file.path, { upload_preset: 'image_upload' });
+      (await Image.create({
+        _id: randomUUID(),
+        label: label,
+        password: hash,
+        url: uploadImage.public_id,
+        isProtected: hash ? true : false,
+      })) as ImageType;
 
-  const image = (await Image.create({
-    _id: randomUUID(),
-    label: label,
-    password: hash,
-    url: uploadImage.public_id,
-    isProtected: hash ? true : false,
-  })) as ImageType;
+      await unlinkAsync(file.path);
+    });
+    await Promise.all(promises);
+  };
 
-  await unlinkAsync(file.path);
-  return res.status(201).json({ image: setResImage(image) });
+  await uploadImage(files);
+  return res.status(201).json();
 };
 
 export const deleteImage = async (req: Request, res: Response): Promise<Response<unknown, Record<string, unknown>>> => {

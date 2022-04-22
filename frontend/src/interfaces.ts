@@ -6,12 +6,12 @@ export type ImageType = {
   _id: string;
 };
 
-export type InputFileValues = {
-  label: string;
-  password: string;
-  name: string;
-  base64encodedImage: string | ArrayBuffer | null;
-};
+// export type InputFileValues = {
+//   label: string;
+//   password: string;
+//   name: string;
+//   base64encodedImage: string | ArrayBuffer | null;
+// };
 
 export interface LayoutProps {
   children: React.ReactNode;
@@ -23,7 +23,7 @@ export type AppContextType = {
   data: ImageType[];
   setData: React.Dispatch<React.SetStateAction<ImageType[]>>;
   getAllImages: (skip: number) => Promise<void>;
-  uploadImage: (formData: FormData) => Promise<void>;
+  uploadImages: (formData: FormData) => Promise<void>;
   isFetching: boolean;
   setIsFetching: React.Dispatch<React.SetStateAction<boolean>>;
   searchValue: string;

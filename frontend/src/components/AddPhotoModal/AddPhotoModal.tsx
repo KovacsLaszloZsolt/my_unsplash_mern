@@ -7,7 +7,7 @@ import ModalBtns from '../ModalBtns/ModalBtns';
 type InputValues = {
   label: string;
   password: string;
-  image: null | File;
+  images: null | FileList;
 };
 
 const AddPhotoModal = ({
@@ -15,10 +15,10 @@ const AddPhotoModal = ({
 }: {
   setIsAddModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }): JSX.Element => {
-  const { setIsModalOpen, uploadImage } = useContext(AppContext);
+  const { setIsModalOpen, uploadImages } = useContext(AppContext);
   const [inputValues, setInputValues] = useState<InputValues>({
     label: '',
-    image: null,
+    images: null,
     password: '',
   });
   const [errors, setErrors] = useState({ label: '', image: '' });
@@ -32,11 +32,11 @@ const AddPhotoModal = ({
   const handleFileSelect = (e: React.ChangeEvent): void => {
     const target = e.target as HTMLInputElement;
 
-    const image: null | File = target.files ? target.files[0] : null;
-    if (inputValues.image && !image) {
+    const images: null | FileList = target.files?.length ? target.files : null;
+    if (inputValues.images && !images) {
       return;
     }
-    setInputValues({ ...inputValues, image: image });
+    setInputValues({ ...inputValues, images: images });
   };
 
   const handleInputTextBlur = (e: React.ChangeEvent): void => {
@@ -52,19 +52,22 @@ const AddPhotoModal = ({
   const handleFormSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('image', inputValues.image as File);
+
+    if (inputValues.images) {
+      Array.from(inputValues.images).forEach((image) => formData.append('images', image));
+    }
+
     formData.append('label', inputValues.label);
     if (inputValues.password) {
       formData.append('password', inputValues.password);
     }
-
-    void uploadImage(formData);
+    void uploadImages(formData);
     setIsAddModalOpen(false);
     setIsModalOpen(false);
   };
 
   useEffect(() => {
-    if (inputValues.label && inputValues.image) {
+    if (inputValues.label && inputValues.images) {
       setIsBtnDisabled(false);
       return;
     }
@@ -106,9 +109,10 @@ const AddPhotoModal = ({
           />
         </div>
         <label className="inputFileLabel" htmlFor="image">
-          {inputValues.image ? 'Change photo' : 'Choose a photo'}
+          {inputValues.images ? 'Change photos' : 'Choose photos'}
         </label>
         <input
+          multiple
           className="inputFile"
           type="file"
           name="image"
@@ -117,7 +121,16 @@ const AddPhotoModal = ({
           onChange={(e) => handleFileSelect(e)}
         />
         {errors.image && <p className="error">{errors.image}</p>}
-        {inputValues.image && <p className="selectedImage">Selected: {inputValues.image.name}</p>}
+        {inputValues.images && (
+          <>
+            <h4>Selected images:</h4>
+            {Array.from(inputValues.images).map((image: File) => (
+              <p key={image.lastModified} className="selectedImage">
+                {image.name}{' '}
+              </p>
+            ))}
+          </>
+        )}
         <ModalBtns setIsCurrentModalOpen={setIsAddModalOpen} isBtnDisabled={isBtnDisabled} />
       </form>
     </div>

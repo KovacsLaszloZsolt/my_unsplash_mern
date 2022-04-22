@@ -10,18 +10,6 @@ const SearchBar = (): JSX.Element => {
   const handleInputChange = async (e: React.ChangeEvent): Promise<void> => {
     const target = e.target as HTMLInputElement;
     setSearchValue(target.value);
-
-    // try {
-    //   const res: AxiosResponse = await axios({
-    //     method: 'get',
-    //     url: `/images?label=${searchValue}`,
-    //   });
-
-    //   const images = res.data as Image[];
-    //   setData(images);
-    // } catch (err) {
-    //   console.log(err);
-    // }
   };
 
   useEffect(() => {

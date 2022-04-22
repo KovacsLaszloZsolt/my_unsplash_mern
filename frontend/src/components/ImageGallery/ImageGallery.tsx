@@ -9,7 +9,6 @@ import ImageViewerModal from '../ImageViewerModal/ImageViewerModal';
 const ImageGallery = (): JSX.Element => {
   const { data, getAllImages, isFetching, setIsFetching } = useContext(AppContext);
   const [viewImageIndex, setViewImageIndex] = useState<number | null>(null);
-  // const [isImageViewerModalOpen, setIsImageViewerModalOpen] = useState(false);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);

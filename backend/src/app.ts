@@ -3,7 +3,8 @@ import express, { Request, Response } from 'express';
 import 'express-async-errors';
 import morgan from 'morgan';
 import errorHandler from './middlewares/errorHandler';
-import { imagesRouter } from './routes/imagesRoutes';
+import imagesRouter from './routes/imagesRoutes';
+import userRouter from './routes/userRoutes';
 import cors from 'cors';
 import path from 'path';
 
@@ -15,6 +16,7 @@ app.use(express.urlencoded({ limit: '10mb', extended: true }));
 app.use('/files', express.static('files'));
 app.use(morgan('tiny'));
 app.use('/images', imagesRouter);
+app.use('/', userRouter);
 app.use(errorHandler);
 
 // serve static folder if production

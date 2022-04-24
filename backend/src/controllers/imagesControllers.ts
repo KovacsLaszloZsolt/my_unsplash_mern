@@ -33,7 +33,7 @@ export const getSingleImage = async (
   const image: ImageType | null = await Image.findById(id);
 
   if (!image) {
-    return res.status(404).send({ error: 'image not found' });
+    return res.status(404).json({ error: 'image not found' });
   }
   return res.status(200).json({ image: setResImage(image) });
 };

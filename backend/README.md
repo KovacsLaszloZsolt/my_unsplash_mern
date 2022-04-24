@@ -15,4 +15,9 @@ routes
 
 // delete /images/:id
 
+login
+post /login
+
+register
+
 

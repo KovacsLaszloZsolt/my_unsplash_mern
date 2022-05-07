@@ -6,13 +6,6 @@ export type ImageType = {
   _id: string;
 };
 
-// export type InputFileValues = {
-//   label: string;
-//   password: string;
-//   name: string;
-//   base64encodedImage: string | ArrayBuffer | null;
-// };
-
 export interface LayoutProps {
   children: React.ReactNode;
 }

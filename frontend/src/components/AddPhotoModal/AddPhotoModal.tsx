@@ -131,7 +131,12 @@ const AddPhotoModal = ({
             ))}
           </>
         )}
-        <ModalBtns setIsCurrentModalOpen={setIsAddModalOpen} isBtnDisabled={isBtnDisabled} />
+        <ModalBtns
+          setIsCurrentModalOpen={setIsAddModalOpen}
+          isBtnDisabled={isBtnDisabled}
+          buttonTitle="Submit"
+          buttonClass="submitBtn"
+        />
       </form>
     </div>
   );

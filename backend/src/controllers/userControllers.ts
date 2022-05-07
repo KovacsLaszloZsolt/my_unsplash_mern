@@ -63,9 +63,9 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
     return res.status(401).json({ error: 'invalid login credential' });
   }
 
-  const verifyUser = await bcrypt.compare(password, user.password);
+  const verifyPassword = await bcrypt.compare(password, user.password);
 
-  if (!verifyUser) {
+  if (!verifyPassword) {
     return res.status(401).json({ error: '"invalid login credential"' });
   }
 

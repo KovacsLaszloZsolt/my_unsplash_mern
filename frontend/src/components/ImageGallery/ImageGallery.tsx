@@ -21,6 +21,7 @@ const ImageGallery = (): JSX.Element => {
     }
     void getAllImages(data.length);
   }, [isFetching]);
+
   function handleScroll(): void {
     if (window.innerHeight + document.documentElement.scrollTop + 150 < document.documentElement.offsetHeight) {
       return;

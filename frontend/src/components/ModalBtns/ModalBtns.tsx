@@ -6,9 +6,13 @@ import AppContext from '../../context/AppContext';
 const ModalBtns = ({
   setIsCurrentModalOpen,
   isBtnDisabled,
+  buttonTitle,
+  buttonClass,
 }: {
   setIsCurrentModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isBtnDisabled: boolean;
+  buttonTitle: string;
+  buttonClass: string;
 }): JSX.Element => {
   const { setIsModalOpen } = useContext(AppContext);
   const handleModalCancelClick = (): void => {
@@ -20,8 +24,8 @@ const ModalBtns = ({
       <span className="cancelBtn" onClick={handleModalCancelClick}>
         Cancel
       </span>
-      <button className="btn primary" type="submit" disabled={isBtnDisabled}>
-        Submit
+      <button className={`btn ${buttonClass}`} type="submit" disabled={isBtnDisabled}>
+        {buttonTitle}
       </button>
     </div>
   );

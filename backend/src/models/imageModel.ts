@@ -9,6 +9,7 @@ const imageSchema = new Schema(
     url: { type: String, required: true },
     password: { type: String, required: false },
     isProtected: { type: Boolean, required: true },
+    ownerId: { type: String, required: false },
   },
   { timestamps: true },
 );

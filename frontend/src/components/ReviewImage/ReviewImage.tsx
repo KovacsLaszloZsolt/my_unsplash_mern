@@ -39,7 +39,7 @@ const ReviewImage = ({
 
   return (
     <>
-      <div className="imageWrapper" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      <figure className="imageWrapper" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         <Image
           cloudName="dxnsrmr2w"
           publicId={image.url}
@@ -49,17 +49,17 @@ const ReviewImage = ({
           <Transformation width="350" crop="scale" />
         </Image>
         {isHowered && (
-          <div className="layerCtn">
-            <span className="imageLabel">{image.label}</span>
+          <>
             <button className="viewImageBtn" onClick={handleViewImageClick}>
               View
             </button>
             <button className="delBtn" onClick={handleDelBtnClick}>
               delete
             </button>
-          </div>
+            <figcaption className="imageLabel">{image.label}</figcaption>
+          </>
         )}
-      </div>
+      </figure>
       {isDelModalOpen && (
         <DelModal setIsDelModalOpen={setIsDelModalOpen} isProtected={image.isProtected} id={image._id} />
       )}

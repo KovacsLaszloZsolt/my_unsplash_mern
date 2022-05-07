@@ -18,6 +18,7 @@ const DelModal = ({
   const [passwordError, setPasswordError] = useState('');
   const [isBtnDisabled, setIsBtnDisabled] = useState(isProtected);
   const [delResError, setDelResError] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const handlePasswordChange = (e: React.ChangeEvent): void => {
     const target = e.target as HTMLInputElement;
@@ -40,6 +41,7 @@ const DelModal = ({
   }, [password]);
 
   const handleFormSubmit = async (e: React.FormEvent): Promise<void> => {
+    setIsDeleting(true);
     e.preventDefault();
     try {
       await axios({
@@ -51,6 +53,7 @@ const DelModal = ({
       setIsDelModalOpen(false);
       void getAllImages(0);
     } catch (error) {
+      setIsDeleting(false);
       const err = error as AxiosError;
       if (err.response?.status === 401) {
         setDelResError('Incorrect password!');
@@ -82,7 +85,12 @@ const DelModal = ({
         {passwordError && <p className="error">{passwordError}</p>}
         {delResError && <p className="error">{delResError}</p>}
         {/* <button type="submit">submit</button> */}
-        <ModalBtns setIsCurrentModalOpen={setIsDelModalOpen} isBtnDisabled={isBtnDisabled} />
+        <ModalBtns
+          setIsCurrentModalOpen={setIsDelModalOpen}
+          isBtnDisabled={isBtnDisabled}
+          buttonTitle={isDeleting ? 'Deleting...' : 'Delete'}
+          buttonClass={'deleteBtn'}
+        />
       </form>
     </div>
   );

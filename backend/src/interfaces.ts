@@ -7,4 +7,5 @@ export type ResImage = {
   url: string;
   isProtected: boolean;
   _id: string;
+  ownerId: string | undefined;
 };

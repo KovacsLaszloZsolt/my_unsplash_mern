@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useLayoutEffect } from 'react';
 import axios, { AxiosResponse } from 'axios';
 
 import { AppContextType, ImageType, LayoutProps } from '../interfaces';
@@ -12,6 +12,7 @@ export const AppContextProvider = ({ children }: LayoutProps): JSX.Element => {
   const [data, setData] = useState<ImageType[]>([]);
   const [isFetching, setIsFetching] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>('');
+  // const [isFirstFetching, setIsFirstFetching] = useState<boolean>(true);
 
   const getAllImages = async (skip: number): Promise<void> => {
     try {
@@ -20,13 +21,17 @@ export const AppContextProvider = ({ children }: LayoutProps): JSX.Element => {
         url: `/images?label=${searchValue}&skip=${skip}`,
       });
       const resData = res.data as ImageType[];
-      console.log(resData);
+
+      // setLastFetchedDataLength(resData.length);
+
       if (skip) {
         setData([...data, ...resData]);
       } else {
         setData(resData);
       }
+
       setIsFetching(false);
+      // setIsFirstFetching(false);
     } catch (err) {
       console.log(err);
     }
@@ -48,6 +53,14 @@ export const AppContextProvider = ({ children }: LayoutProps): JSX.Element => {
       console.log(err);
     }
   };
+
+  // useLayoutEffect(() => {
+  //   if (lastFetchedDataLength && !isFirstFetching && document.documentElement.offsetHeight <= window.innerHeight) {
+  //     console.log('run');
+  //     setIsFirstFetching(true);
+  //     void getAllImages(data.length);
+  //   }
+  // }, [isFirstFetching]);
 
   return (
     <AppContext.Provider

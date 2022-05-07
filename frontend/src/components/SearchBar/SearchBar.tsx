@@ -26,7 +26,7 @@ const SearchBar = (): JSX.Element => {
         type="text"
         name="search"
         id="search"
-        placeholder="Search by name"
+        placeholder="Search by label"
         value={searchValue}
         onChange={(e) => void handleInputChange(e)}
       />

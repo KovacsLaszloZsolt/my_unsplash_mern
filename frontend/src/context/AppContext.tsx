@@ -2,8 +2,8 @@ import { createContext, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
 
 import { AppContextType, ImageType, LayoutProps } from '../interfaces';
-// axios.defaults.baseURL = 'http://localhost:3001';
-axios.defaults.baseURL = 'https://morning-garden-14259.herokuapp.com/';
+axios.defaults.baseURL = 'http://localhost:3001';
+// axios.defaults.baseURL = 'https://morning-garden-14259.herokuapp.com/';
 
 const AppContext = createContext<AppContextType>({} as AppContextType);
 
@@ -28,21 +28,18 @@ export const AppContextProvider = ({ children }: LayoutProps): JSX.Element => {
       }
 
       setIsFetching(false);
-      // setIsFirstFetching(false);
     } catch (err) {
       console.log(err);
     }
   };
 
   const uploadImages = async (formData: FormData): Promise<void> => {
-    console.log(formData);
     try {
       const res = await axios({
         method: 'post',
         url: '/images',
         data: formData,
       });
-      console.log(res);
       if (res.status === 201) {
         await getAllImages(0);
       }
@@ -50,14 +47,6 @@ export const AppContextProvider = ({ children }: LayoutProps): JSX.Element => {
       console.log(err);
     }
   };
-
-  // useLayoutEffect(() => {
-  //   if (lastFetchedDataLength && !isFirstFetching && document.documentElement.offsetHeight <= window.innerHeight) {
-  //     console.log('run');
-  //     setIsFirstFetching(true);
-  //     void getAllImages(data.length);
-  //   }
-  // }, [isFirstFetching]);
 
   return (
     <AppContext.Provider

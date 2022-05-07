@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-, "node_modules/cloudinary-react/index.d.ts"  ]
+, "src/components/ImageViewerModal/index.d.ts"  ]
 }

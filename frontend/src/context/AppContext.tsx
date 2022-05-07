@@ -2,8 +2,8 @@ import { createContext, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
 
 import { AppContextType, ImageType, LayoutProps } from '../interfaces';
-// axios.defaults.baseURL = 'http://localhost:3001';
-axios.defaults.baseURL = 'https://morning-garden-14259.herokuapp.com/';
+axios.defaults.baseURL = 'http://localhost:3001';
+// axios.defaults.baseURL = 'https://morning-garden-14259.herokuapp.com/';
 
 const AppContext = createContext<AppContextType>({} as AppContextType);
 
@@ -12,7 +12,6 @@ export const AppContextProvider = ({ children }: LayoutProps): JSX.Element => {
   const [data, setData] = useState<ImageType[]>([]);
   const [isFetching, setIsFetching] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>('');
-  // const [isFirstFetching, setIsFirstFetching] = useState<boolean>(true);
 
   const getAllImages = async (skip: number): Promise<void> => {
     try {
@@ -21,8 +20,6 @@ export const AppContextProvider = ({ children }: LayoutProps): JSX.Element => {
         url: `/images?label=${searchValue}&skip=${skip}`,
       });
       const resData = res.data as ImageType[];
-
-      // setLastFetchedDataLength(resData.length);
 
       if (skip) {
         setData([...data, ...resData]);

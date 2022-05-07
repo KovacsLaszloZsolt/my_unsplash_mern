@@ -11,7 +11,7 @@ const errorHandler = (err: unknown, _req: Request, res: Response, _next: NextFun
   if (err instanceof JsonWebTokenError) {
     return res.status(403).json({ error: 'invalid token' });
   }
-  return res.status(500).send({ error: 'unknown error' });
+  return res.status(500).send(err);
 };
 
 export default errorHandler;

@@ -2,8 +2,8 @@ import { createContext, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
 
 import { AppContextType, ImageType, LayoutProps } from '../interfaces';
-axios.defaults.baseURL = 'http://localhost:3001';
-// axios.defaults.baseURL = 'https://morning-garden-14259.herokuapp.com/';
+// axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.baseURL = 'https://morning-garden-14259.herokuapp.com/';
 
 const AppContext = createContext<AppContextType>({} as AppContextType);
 
